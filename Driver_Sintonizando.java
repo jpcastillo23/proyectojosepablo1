@@ -1,3 +1,14 @@
+/*
+Jose Pablo Castillo Rodas 
+100007
+
+Descripcion:
+	Este el el Driver de mi programa el cual genera la ventana principal
+	y crea el panel de fondo donde esta el fondo de radio y sus botones.
+	La clase esta diseñada para que sin importar el Sistema Operativo este
+	funcione bien, por lo que no hay problema entre Windows y macOS
+
+*/
 
 import javax.swing.*;
 import java.awt.*;

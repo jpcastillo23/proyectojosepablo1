@@ -1,4 +1,17 @@
+/*
+Jose Pablo Castillo Rodas
+10007
 
+Descripcion:
+	Clase constructora de Radios. Esta clase Posee
+	-Atributos para las estaciones guardadas
+										*am
+										*fm
+	-La posicion actual de la sintonizacion en AM/Fm por individuales
+	Por lo que almacena tanto donde se quedo el usuario en AM y en FM
+	- posee una memoria de 12  espacios, con frecuencia y estacion
+	- 
+*/
 
 public class Radio implements JoseCastillo {
 	
@@ -80,6 +93,36 @@ public class Radio implements JoseCastillo {
 	//Metodo Implementado que recibe el numero de boton
 	//el cual fue presionado, restaurando asi la frec y
 	//Modulaicon a la situaicon actual
-
+	public void select(int cualboton){
+		if(amsfm[cualboton])
+			this.frecuenciafm=htz[cualboton];
+		else
+			this.frecuenciaam= (int)(htz[cualboton]);
+		
+		this.emision=amsfm[cualboton];
+	}
+	// metodo Implementado que establece el radio como
+	//Apagado
+	public void salir(){
+		this.estado = false ;
+	}
+	//Metodo que regresa la frecuencia actual segun la
+	//modulacion actual
+	public float getFrec(boolean which){
+		if (which)
+			return this.frecuenciafm;
+		else
+			return this.frecuenciaam;
+	}
+	//Regresa el estado del radio, ON/off
+	public boolean getState(){
+		return estado;
+	} 
+	//Retorna la modulacion en la cual se encuentra 
+	//la radio
+	public boolean getEmision(){
+		return emision;
+	}
+	
 	
 }
