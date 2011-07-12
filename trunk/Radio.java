@@ -33,21 +33,45 @@ public class Radio implements JoseCastillo {
 	}
 	//Metodo que cambia la Emision y regresa la nueva Modulacion
 	public boolean cambio(){
-
+		emision = !emision;
+		return emision;
 	}
 	//Metodo Implementado que Avanza la frecuencia
 	//dependiendo de la Modulacion actual
 	public void fw(){
-
+		if(this.estado){
+			if (this.emision){
+				if(frecfmsup>=(frecuenciafm+0.2))
+					this.frecuenciafm += 0.2;
+			}
+			else{
+				if(frecamsup>=(frecuenciaam+10))
+					this.frecuenciaam += 10;
+			}
+		}
 	}
 	//Metodo Implementado que Retrocede la frecuencia
 	//demendiendo de la Modulacion Actual
 	public void rw(){
+		if(this.estado){
+			if (this.emision){
+				if(frecfminf<=(frecuenciafm-0.2))
+					this.frecuenciafm -= 0.2;
+			}
+			else{ 
+				if(frecaminf<=(frecuenciaam-10))
+					this.frecuenciaam -= 10;
+			}
+		}
 	}
 	//Metodo que recibe el numero local de memoria
 	//en donde se Almacenara la frecuencia y la mofulacion
 	public void store(int localidad){
-
+		if (emision)
+			this.htz[localidad]=frecuenciafm;
+		else
+			this.htz[localidad]=frecuenciaam;
+		this.amsfm[localidad]=emision;
 	}
 	//Metodo Implementado que recibe el numero de boton
 	//el cual fue presionado, restaurando asi la frec y

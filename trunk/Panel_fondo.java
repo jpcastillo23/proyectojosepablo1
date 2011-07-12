@@ -58,7 +58,15 @@ public class Panel_fondo extends JPanel  {
 		Botones temp = (Botones)event.getSource();
 		switch(temp.getID()){
 			case 0: // FUNCION DE APAGADO Y PRENDIDO
-
+				car_radio.power();
+				if(car_radio.getState()){
+					pantalla.setText("      ...    Bienvenido ....     ");
+				}
+				else{
+					pantalla.setText("...    Buenas Noches .z.Z.z.Z.Z   ");
+				}
+				pantalla.repaint();
+				apachadoTemporal=false;
 				break;
 			case 13: //funcion de cambio de AM/FM
 				tempboo = car_radio.cambio();
