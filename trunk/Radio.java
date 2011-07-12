@@ -3,12 +3,16 @@
 public class Radio implements JoseCastillo {
 	
 	
-
+			//emision: Estado de FM o AM, FM=TRUE AM=FALSE
+			// Estado indica si esta prendido o apagado
 	private boolean emision, estado=false;
 			//Frecuencia establece la frecuencia actual del radio
 	private int frecuenciaam,frecaminf,frecamsup;
 	private float frecuenciafm,frecfminf,frecfmsup;
-
+			//Establece 2 matrices, en las cuales 1 almacenara
+			//la frecuencia como flotante, ya sea para FM y AM.
+			//La otra establece la Modulacion al momento que se 
+			//almaceno.
 	private boolean[] amsfm = new boolean[13];
 	private float[] htz = new float[13];
 
