@@ -123,6 +123,17 @@ public class Radio implements JoseCastillo {
 	public boolean getEmision(){
 		return emision;
 	}
+	//Metodo que efectivamente regresa a su origen
+	//a cada frecuencia debido a si un usuario
+	//desea crecer la frecuencia, habiendo este 
+	//apachado un numero antes, este lo situaba en 0Htz, ahora
+	//lo situa en el menor
+	public void setFrec(boolean which){
+		if (which)
+			this.frecuenciafm= frecfminf;
+		else
+			this.frecuenciaam= frecaminf;
+	}
 	
 	
 }
