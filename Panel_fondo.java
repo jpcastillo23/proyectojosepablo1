@@ -119,6 +119,8 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				apachadoTemporal=true;	
 				break;
 			case 15://Funcion de BACKWARD
+				if(car_radio.getFrec(tempboo)==(float)0)
+					car_radio.setFrec(tempboo);
 				if (tempboo){//para retroceder solo Fm
 					car_radio.rw();
 					pantalla.setText("  .           "+car_radio.getFrec(tempboo)+" FM" );
@@ -131,6 +133,8 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				apachadoTemporal=false;
 				break;
 			case 16://FUNCION DE FOWARD
+				if(car_radio.getFrec(tempboo)==(float)0)
+					car_radio.setFrec(tempboo);
 				if (tempboo){//para avanzar FM
 					car_radio.fw();
 					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+"   FM" );
