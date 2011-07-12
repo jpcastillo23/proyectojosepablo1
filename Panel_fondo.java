@@ -81,13 +81,36 @@ public class Panel_fondo extends JPanel  {
 				apachadoTemporal=true;	
 				break;
 			case 15://Funcion de BACKWARD
-
+				if (tempboo){//para retroceder solo Fm
+					car_radio.rw();
+					pantalla.setText("  .           "+car_radio.getFrec(tempboo)+" FM" );
+				}
+				else{//para retroceder solo Am
+					car_radio.rw();
+					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
+				}
+				pantalla.repaint();
+				apachadoTemporal=false;
 				break;
 			case 16://FUNCION DE FOWARD
-
+				if (tempboo){//para avanzar FM
+					car_radio.fw();
+					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+"   FM" );
+				}
+				else{//para retroceder AM
+					car_radio.fw(); 
+					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
+				}
+				pantalla.repaint();
+				apachadoTemporal=false;
 				break;
 			default:
-
+				//Para guardar (Strore 1-12)
+				if(apachadoTemporal){
+			 		car_radio.store(temp.getID());
+					pantalla.setText("Store:   "+car_radio.getFrec(tempboo)+" AM" );
+					apachadoTemporal=false;
+				}
 				//para seleccionar (1-12)
 				else{
 					car_radio.select(temp.getID());

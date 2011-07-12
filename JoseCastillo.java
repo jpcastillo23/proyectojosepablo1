@@ -1,4 +1,13 @@
+/*
+Jose Pablo Castillo Rodas 
+100007
 
+Descripcion:
+Esta es la interface utilizada en mi programa, el cual describira la
+caracteristica comun utilizada  para todos los programas de la clase
+de Estructura de datos en la elaboracion del Radio.
+
+*/
 public interface JoseCastillo {
 	
 	public boolean power();
