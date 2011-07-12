@@ -7,5 +7,7 @@ public class Botones extends JButton{
 		super(mi_imagen);
 		this.identificador=id;
 	}
-
+	public int getID(){
+		return this.identificador;
+	}
 }
