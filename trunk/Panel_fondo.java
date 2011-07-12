@@ -1,6 +1,27 @@
+/*
+Jose Pablo Castillo Rodas 
+100007
+
+Descripcion:
+	Este teoricamente es un panel, sin embargo es quien 
+	controla todo el manejo del programa ya que el Driver
+	solo utiliza un objeto de esta clase.
+	
+	La funcion es asignarle a cada boton una ubicacion, una imagen
+	y su respectiva localizacion  en el panel. Posee la cualidad
+	de asignarle un fondo a un panel asi como Tips a botones de importancia.
+	Implemeta ActionListener, por lo queno tenemos que crear una subclase o
+	una clase interna.
+
+*/
+import java.io.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
 
 
-public class Panel_fondo extends JPanel  {
+public class Panel_fondo extends JPanel implements ActionListener {
 	
 	
 	//++++++++++++++++++++++   Atributos   +++++++++++++++++++++++++
@@ -35,7 +56,24 @@ public class Panel_fondo extends JPanel  {
 			add(mis_botoncitos[a]);
 		}
 		//*************************Coloco todos mis Botones en Forma ELEGANTE ***************************
-
+		for(int x=0;x<4;x++){
+			for(int y=0;y<4;y++){
+				mis_botoncitos[counter].setBounds(286+y*54,150+x*54,55,55);
+				counter +=1;
+			}// Tamaño de Imagenes  83*75 , 54*119 , 79*75 , 88*62, 340*58 
+		}
+		//Colocar Mis Botones en Lugares Especificos, sinningun LAYOUT
+		mis_botoncitos[0].setBounds(125,125,83,75);
+		mis_botoncitos[13].setBounds(125,360,54,119);
+		mis_botoncitos[14].setBounds(605,360,79,75);
+		mis_botoncitos[15].setBounds(330,365,88,62);
+		mis_botoncitos[16].setBounds(418,365,88,62);
+		//Establecer ToolTips para ayuda
+		mis_botoncitos[0].setToolTipText("On / Off");
+		mis_botoncitos[14].setToolTipText("Presiona 'Store', y luego El numero de Memoria");
+		pantalla.setBounds(270,70,340,58);
+		add(pantalla);
+		
 		
 		// ******************************************************************************************************
 		
