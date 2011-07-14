@@ -51,7 +51,7 @@ public class Panel_fondo extends JPanel implements ActionListener {
 		setPreferredSize(tamaño);
 		pantalla.setFont(font);
 		setLayout(null);
-		car_radio = new Radio(estadoinicial,530,1610,(float)87.9,(float)107.9,false);
+		car_radio = new Radio();
 		
 		
 		//*************************Creo mis botones con su respectiva IMAGEN y NOMBRE ***************************
@@ -116,7 +116,8 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				apachadoTemporal=false;
 				break;
 			case 13: //funcion de cambio de AM/FM
-				/*tempboo = car_radio.cambio();
+				tempboo = car_radio.cambio();
+				/*
 				if (tempboo)
 					pantalla.setText(" .        "+car_radio.getFrec(tempboo)+" FM" );
 				else
