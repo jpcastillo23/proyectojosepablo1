@@ -31,10 +31,15 @@ public class Panel_fondo extends JPanel implements ActionListener {
 	private JLabel pantalla = new JLabel("Radio - Pulse On/Off Para Iniciar");
 	private Botones[] mis_botoncitos = new Botones[17];
 	private Font font = new Font("Tahoma",1,28);
-	private boolean apachadoTemporal=false,tempboo;
+	private boolean apachadoTemporal=false,tempboo,estadoinicial=false;
 	private int counter=1;
 	
-	//Crea el Panel con fondo del radio
+	
+	/**Crea el Panel con fondo del radio. Tambien se encarga de 
+	responder ante el tipo de objeto que se cree, pudiendo asi 
+	mostrar en pantalla el formato actual del radio.
+	*/
+	
 	public Panel_fondo(Image fondo){
 		
 			// INICIALIZAR PROPIEDADES DE PANTALLA Y GUI 
@@ -43,7 +48,7 @@ public class Panel_fondo extends JPanel implements ActionListener {
 		setPreferredSize(tamaño);
 		pantalla.setFont(font);
 		setLayout(null);
-		car_radio = new Radio(false,530,1610,(float)87.9,(float)107.9,false);
+		car_radio = new Radio(estadoinicial,530,1610,(float)87.9,(float)107.9,false);
 		
 		
 		//*************************Creo mis botones con su respectiva IMAGEN y NOMBRE ***************************
@@ -97,7 +102,8 @@ public class Panel_fondo extends JPanel implements ActionListener {
 		switch(temp.getID()){
 			case 0: // FUNCION DE APAGADO Y PRENDIDO
 				car_radio.power();
-				if(car_radio.getState()){
+				estadoinicial = !estadoinicial;
+				if(estadoinicial){
 					pantalla.setText("      ...    Bienvenido ....     ");
 				}
 				else{
@@ -157,6 +163,7 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				else{
 					car_radio.select(temp.getID());
 					tempboo=car_radio.getEmision();
+
 					if (tempboo){
 						pantalla.setText(" #     "+temp.getID()+" :   "+car_radio.getFrec(tempboo)+" FM" );
 					}
@@ -168,5 +175,6 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				break;
 		}
 	}
+	
 	
 }
