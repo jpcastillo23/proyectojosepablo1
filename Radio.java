@@ -34,17 +34,18 @@ public class Radio implements NuestraInterfaz {
 
 	
 	// se establece el estado inicial AM/FM y los limites superior e inferior
-	public Radio (boolean amfm,int frecaminf,int frecamsup, float frecfminf,float frecfmsup,boolean state){
-		this.emision=amfm;
+	public Radio (){
+		//530,1610,(float)87.9,(float)107.9,false
+		this.emision=false;
 		//Configurar limites am
-		this.frecuenciaam= frecaminf;
-		this.frecaminf=frecaminf;
-		this.frecamsup=frecamsup;
+		this.frecuenciaam= 530;
+		this.frecaminf=540;
+		this.frecamsup=1610;
 		//Configurar limites FM
-		this.frecfminf=frecfminf;
-		this.frecfmsup=frecfmsup;
+		this.frecfminf=(float)87.9;
+		this.frecfmsup=(float)107.9;
 		this.frecuenciafm= frecfminf;
-		this.estado= state;
+		this.estado= false;
 	}
 	//Metodo que cambia de On/Off y regresa la posicion 
 	public boolean power(){
@@ -174,16 +175,16 @@ public class Radio implements NuestraInterfaz {
 	*/
 	public String toString(){
 		String muestra = "";
-		muestra += "+Ver DOS+++++++++++++++++++++++++++++++++++++++\n";
-		if (estado)
-			muestra += "Tu Radio esta: Encendido \n";
-		else
-			muestra += "Tu Radio esta: Apagado\n";
 		if (emision)
 			muestra += "Frecuencia:"+frecuenciafm+" FM\n";
 		else
 			muestra += "Frecuencia:"+frecuenciaam+" AM\n";
 		muestra += "+++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		muestra += "+++++++++++++++++++++++++Ver DOS+++++++++++++++++\n";
+		if (estado)
+			muestra += "Tu Radio esta: Encendido \n";
+		else
+			muestra += "Tu Radio esta: Apagado\n";
 		return muestra;
 	}
 	/*
