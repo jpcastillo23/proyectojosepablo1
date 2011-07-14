@@ -1,3 +1,6 @@
+
+//package mi_radio_josepablo;
+
 /*
 Jose Pablo Castillo Rodas 
 100007
@@ -113,19 +116,21 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				apachadoTemporal=false;
 				break;
 			case 13: //funcion de cambio de AM/FM
-				tempboo = car_radio.cambio();
+				/*tempboo = car_radio.cambio();
 				if (tempboo)
 					pantalla.setText(" .        "+car_radio.getFrec(tempboo)+" FM" );
 				else
 					pantalla.setText(" .        "+car_radio.getFrec(tempboo)+" AM" );
 				pantalla.repaint();
-				apachadoTemporal=false;
+				apachadoTemporal=false; */
+                                pantalla.setText(car_radio.toString());
+                                apachadoTemporal=false;
 				break;
 			case 14: // funcion de STORE en memoria
 				apachadoTemporal=true;	
 				break;
 			case 15://Funcion de BACKWARD
-				if(car_radio.getFrec(tempboo)==(float)0)
+				/*if(car_radio.getFrec(tempboo)==(float)0)
 					car_radio.setFrec(tempboo);
 				if (tempboo){//para retroceder solo Fm
 					car_radio.rw();
@@ -134,12 +139,15 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				else{//para retroceder solo Am
 					car_radio.rw();
 					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
-				}
+				}*/
+                                car_radio.bw();
+                                pantalla.setText(car_radio.toString());
+
 				pantalla.repaint();
 				apachadoTemporal=false;
 				break;
 			case 16://FUNCION DE FOWARD
-				if(car_radio.getFrec(tempboo)==(float)0)
+				/*if(car_radio.getFrec(tempboo)==(float)0)
 					car_radio.setFrec(tempboo);
 				if (tempboo){//para avanzar FM
 					car_radio.fw();
@@ -148,7 +156,10 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				else{//para retroceder AM
 					car_radio.fw(); 
 					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
-				}
+				}*/
+                                car_radio.fw(); 
+                                pantalla.setText(car_radio.toString());
+
 				pantalla.repaint();
 				apachadoTemporal=false;
 				break;
@@ -156,21 +167,23 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				//Para guardar (Strore 1-12)
 				if(apachadoTemporal){
 			 		car_radio.store(temp.getID());
-					pantalla.setText("Store:   "+car_radio.getFrec(tempboo)+" AM" );
-					apachadoTemporal=false;
+					pantalla.setText("Store:   "+temp.getID());
 				}
 				//para seleccionar (1-12)
 				else{
 					car_radio.select(temp.getID());
-					tempboo=car_radio.getEmision();
+					/*tempboo=car_radio.getEmision();
 
 					if (tempboo){
 						pantalla.setText(" #     "+temp.getID()+" :   "+car_radio.getFrec(tempboo)+" FM" );
 					}
 					else{
 						pantalla.setText(" #      "+temp.getID()+" :   "+car_radio.getFrec(tempboo)+" AM" );
-					}
+					}*/
+					
 				}
+				apachadoTemporal=false;
+				pantalla.setText(car_radio.toString());
 				pantalla.repaint();
 				break;
 		}
