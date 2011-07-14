@@ -1,3 +1,6 @@
+
+//package mi_radio_josepablo;
+
 /*
 Jose Pablo Castillo Rodas
 10007
@@ -13,7 +16,7 @@ Descripcion:
 	- 
 */
 
-public class Radio implements JoseCastillo {
+public class Radio implements NuestraInterfaz {
 	
 	
 			//emision: Estado de FM o AM, FM=TRUE AM=FALSE
@@ -80,7 +83,7 @@ public class Radio implements JoseCastillo {
 	}
 	//Metodo Implementado que Retrocede la frecuencia
 	//demendiendo de la Modulacion Actual
-	public void rw(){
+	public void bw(){
 		if(this.estado){
 			if (this.emision){
 				if(frecfminf<=(frecuenciafm-0.2))
@@ -112,13 +115,22 @@ public class Radio implements JoseCastillo {
 	//Modulaicon a la situaicon actual
 	public void select(int cualboton){
 		System.out.println("Ah seleccionado el boton: "+ cualboton);
-		
+		if (htz[cualboton]== (float)0){
+			if(amsfm[cualboton])
+				this.htz[cualboton]=frecfminf;
+			else
+				this.htz[cualboton]= frecaminf;
+		}
 		if(amsfm[cualboton])
 			this.frecuenciafm=htz[cualboton];
 		else
 			this.frecuenciaam= (int)(htz[cualboton]);
 		
 		this.emision=amsfm[cualboton];
+		
+		
+		
+		
 		System.out.println(toString());
 		
 		
@@ -162,7 +174,7 @@ public class Radio implements JoseCastillo {
 	*/
 	public String toString(){
 		String muestra = "";
-		muestra += "+++++++++++++++++++++++++++++++++++++++++++++++++\n";
+		muestra += "+Ver DOS+++++++++++++++++++++++++++++++++++++++\n";
 		if (estado)
 			muestra += "Tu Radio esta: Encendido \n";
 		else
@@ -173,6 +185,14 @@ public class Radio implements JoseCastillo {
 			muestra += "Frecuencia:"+frecuenciaam+" AM\n";
 		muestra += "+++++++++++++++++++++++++++++++++++++++++++++++++\n";
 		return muestra;
+	}
+	/*
+	    Funcion que resstablece al menor de la respectiva emisoda si
+	en tal caso al seleccinar un boton este está vacio. 
+
+	*/
+	public void reestablecer(){
+		
 	}
 	
 	
