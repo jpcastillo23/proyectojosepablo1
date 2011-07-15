@@ -1,54 +1,56 @@
-
-//package mi_radio_josepablo;
-
-/*
-Jose Pablo Castillo Rodas 
-100007
-
-Descripcion:
-	Este teoricamente es un panel, sin embargo es quien 
-	controla todo el manejo del programa ya que el Driver
-	solo utiliza un objeto de esta clase.
-	
-	La funcion es asignarle a cada boton una ubicacion, una imagen
-	y su respectiva localizacion  en el panel. Posee la cualidad
-	de asignarle un fondo a un panel asi como Tips a botones de importancia.
-	Implemeta ActionListener, por lo queno tenemos que crear una subclase o
-	una clase interna.
-
-*/
-import java.io.*;
+/**
+ * @author Jose Pablo Castillo Rodas
+ *{@link http://code.google.com/p/proyectojosepablo1/}  label
+ *100007
+ *
+ *Descripcion:
+ *	Este teoricamente es un panel, sin embargo es quien 
+ *	controla todo el manejo del programa ya que el Driver
+ *	solo utiliza un objeto de esta clase.
+ *	
+ *	La funcion es asignarle a cada boton una ubicacion, una imagen
+ *	y su respectiva localizacion  en el panel. Posee la cualidad
+ *	de asignarle un fondo a un panel asi como Tips a botones de importancia.
+ *	Implemeta ActionListener, por lo queno tenemos que crear una subclase o
+ *	una clase interna.
+ *
+ */
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 
-
+/*
+ * Panel_fondo es una clase que hereda un JPanel. Esta tambien implementa
+ * aciton listeners con el objetivo de 
+ */
+@SuppressWarnings("serial")
 public class Panel_fondo extends JPanel implements ActionListener {
 	
 	
-	//++++++++++++++++++++++   Atributos   +++++++++++++++++++++++++
+	/**++++++++++++++++++++++   Atributos   +++++++++++++++++++++++++*/
 	private Image fondo_panel;
 		//Botones: Encendido/apagado; Am/fm; 1-12;STORE;
 	private Radio car_radio;
 	private JLabel pantalla = new JLabel("Radio - Pulse On/Off Para Iniciar");
-	private Botones[] mis_botoncitos = new Botones[17];
+	private myBotones[] mis_botoncitos = new myBotones[17];
 	private Font font = new Font("Tahoma",1,28);
+	@SuppressWarnings("unused")
 	private boolean apachadoTemporal=false,tempboo,estadoinicial=false;
 	private int counter=1;
 	
 	
-	/**Crea el Panel con fondo del radio. Tambien se encarga de 
-	responder ante el tipo de objeto que se cree, pudiendo asi 
-	mostrar en pantalla el formato actual del radio.
-	*/
+	/**
+	 *Crea el Panel con fondo del radio. Tambien se encarga de 
+     *responder ante el tipo de objeto que se cree, pudiendo asi 
+	 *mostrar en pantalla el formato actual del radio.
+	 */
 	
 	public Panel_fondo(Image fondo){
 		
-			// INICIALIZAR PROPIEDADES DE PANTALLA Y GUI 
+			/** INICIALIZAR PROPIEDADES DE PANTALLA Y GUI  */
 		this.fondo_panel = fondo;
-		Dimension tamaño = new Dimension(fondo_panel.getWidth(null),fondo_panel.getHeight(null));
-		setPreferredSize(tamaño);
+		Dimension tamano = new Dimension(fondo_panel.getWidth(null),fondo_panel.getHeight(null));
+		setPreferredSize(tamano);
 		pantalla.setFont(font);
 		setLayout(null);
 		car_radio = new Radio();
@@ -57,9 +59,9 @@ public class Panel_fondo extends JPanel implements ActionListener {
 		//*************************Creo mis botones con su respectiva IMAGEN y NOMBRE ***************************
 		for(int a=0;a< mis_botoncitos.length ;a++){
 			if(System.getProperty("os.name").toLowerCase().startsWith("windows"))
-				mis_botoncitos[a] = new Botones(new ImageIcon(".\\imagenes\\botones\\"+a+".jpg"),a);
+				mis_botoncitos[a] = new myBotones(new ImageIcon(".\\imagenes\\botones\\"+a+".jpg"),a);
 			else
-				mis_botoncitos[a] = new Botones(new ImageIcon("./imagenes/botones/"+a+".jpg"),a);
+				mis_botoncitos[a] = new myBotones(new ImageIcon("./imagenes/botones/"+a+".jpg"),a);
 			mis_botoncitos[a].addActionListener(this);
 			add(mis_botoncitos[a]);
 		}
@@ -101,7 +103,7 @@ public class Panel_fondo extends JPanel implements ActionListener {
 	*/
 	public void actionPerformed(ActionEvent event){
 		//aqui va o que tengo que hacer coel boton de off y on
-		Botones temp = (Botones)event.getSource();
+		myBotones temp = (myBotones)event.getSource();
 		switch(temp.getID()){
 			case 0: // FUNCION DE APAGADO Y PRENDIDO
 				car_radio.power();
@@ -117,50 +119,21 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				break;
 			case 13: //funcion de cambio de AM/FM
 				tempboo = car_radio.cambio();
-				/*
-				if (tempboo)
-					pantalla.setText(" .        "+car_radio.getFrec(tempboo)+" FM" );
-				else
-					pantalla.setText(" .        "+car_radio.getFrec(tempboo)+" AM" );
-				pantalla.repaint();
-				apachadoTemporal=false; */
-                                pantalla.setText(car_radio.toString());
-                                apachadoTemporal=false;
+                pantalla.setText(car_radio.toString());
+                apachadoTemporal=false;
 				break;
 			case 14: // funcion de STORE en memoria
 				apachadoTemporal=true;	
 				break;
 			case 15://Funcion de BACKWARD
-				/*if(car_radio.getFrec(tempboo)==(float)0)
-					car_radio.setFrec(tempboo);
-				if (tempboo){//para retroceder solo Fm
-					car_radio.rw();
-					pantalla.setText("  .           "+car_radio.getFrec(tempboo)+" FM" );
-				}
-				else{//para retroceder solo Am
-					car_radio.rw();
-					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
-				}*/
-                                car_radio.bw();
-                                pantalla.setText(car_radio.toString());
-
+                car_radio.bw();
+                pantalla.setText(car_radio.toString());
 				pantalla.repaint();
 				apachadoTemporal=false;
 				break;
 			case 16://FUNCION DE FOWARD
-				/*if(car_radio.getFrec(tempboo)==(float)0)
-					car_radio.setFrec(tempboo);
-				if (tempboo){//para avanzar FM
-					car_radio.fw();
-					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+"   FM" );
-				}
-				else{//para retroceder AM
-					car_radio.fw(); 
-					pantalla.setText("   .           "+car_radio.getFrec(tempboo)+" AM" );
-				}*/
-                                car_radio.fw(); 
-                                pantalla.setText(car_radio.toString());
-
+                car_radio.fw(); 
+                pantalla.setText(car_radio.toString());
 				pantalla.repaint();
 				apachadoTemporal=false;
 				break;
@@ -173,15 +146,6 @@ public class Panel_fondo extends JPanel implements ActionListener {
 				//para seleccionar (1-12)
 				else{
 					car_radio.select(temp.getID());
-					/*tempboo=car_radio.getEmision();
-
-					if (tempboo){
-						pantalla.setText(" #     "+temp.getID()+" :   "+car_radio.getFrec(tempboo)+" FM" );
-					}
-					else{
-						pantalla.setText(" #      "+temp.getID()+" :   "+car_radio.getFrec(tempboo)+" AM" );
-					}*/
-					
 				}
 				apachadoTemporal=false;
 				pantalla.setText(car_radio.toString());
